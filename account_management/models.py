@@ -46,22 +46,19 @@ class BaseUser(AbstractUser):
     objects = CustomUserManager()
 
 
-"""
-So why Multi Table Inheritance not simple inheritance from abstract class
-we use admin model as our auth model
-In future if you want to make normal user authenticate with the system also will be easy to make base user as auth model
-"""
-
-
 class Admin(BaseUser):
     class Meta:
         verbose_name = _('admin')
         verbose_name_plural = _('admins')
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.is_staff = True
+        return super().save(*args, **kwargs)
 
 
 class User(BaseUser):
     created_by = models.ForeignKey(Admin, related_name='creator', on_delete=models.CASCADE)
-
 
 
 class BankAccount(models.Model):

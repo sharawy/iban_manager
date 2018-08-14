@@ -42,7 +42,13 @@ class CustomUser(ExtraObjectLevelPermission, UserAdmin):
 
 class CustomAdmin(UserAdmin):
     form = CustomChangeUserForm
-
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_superuser',
+                                       'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+    )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -50,6 +56,9 @@ class CustomAdmin(UserAdmin):
         }),
     )
     ordering = ('email',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(is_staff=True)
 
 
 class BankAccountAdmin(ExtraObjectLevelPermission, admin.ModelAdmin):
