@@ -19,6 +19,7 @@ Simple user iban management
 )` 
   - SOCIAL_AUTH_GOOGLE_OAUTH2_KEY and SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET to enable google authentication 
   - DATABASES
+- `python manage.py migrate`
 - `python manage.py runserver`
 
    
