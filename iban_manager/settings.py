@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'social_django',
     'localflavor',
     # local app
+    'core',
     'account_management',
 
 ]
@@ -211,7 +212,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 ADMINS = (
-  #  'name', 'example@example.com'
+  #  ('name', 'example@example.com'),
 )  # don't leave me like that
 try:
     from .local_settings import *
