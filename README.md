@@ -29,6 +29,7 @@ Simple user iban management
  - BankAccount: contain user iban info
  
  ### Permissions
+ `Only superusers and staff can acces the admin panel`
  - ExtraObjectLevelPermission: Base class provide generic way to apply custom object level perimission to the ModelAdmin
  - AllowOnlyCreatorToChangeDeleteUser: Restrict change or delete to user model
  - AllowOnlyCreatorIBAN: Restircit change or delete user model
