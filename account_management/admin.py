@@ -67,8 +67,9 @@ class BankAccountAdmin(ExtraObjectLevelPermission, admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        form.base_fields['owner'].queryset = User.objects.filter(
-            created_by=request.user)  # retrieve only user that created by admin
+        if 'owner' in form.base_fields:
+            form.base_fields['owner'].queryset = User.objects.filter(
+                created_by=request.user)  # retrieve only user that created by admin
         return form
 
 
